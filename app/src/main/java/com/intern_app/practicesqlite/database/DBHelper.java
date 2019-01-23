@@ -1,5 +1,6 @@
 package com.intern_app.practicesqlite.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -28,5 +29,15 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table if exists users");
+    }
+    public boolean insertIntoDatabase(String f_name, String l_name, String username, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("first_name",f_name);
+        contentValues.put("last_name",l_name);
+        contentValues.put("username",username);
+        contentValues.put("password,",password);
+        db.insert(TABLE_NAME,null,contentValues);
+        return true;
     }
 }
