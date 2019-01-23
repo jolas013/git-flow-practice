@@ -11,16 +11,17 @@ import android.widget.TextView;
 import com.intern_app.practicesqlite.R;
 
 public class MainActivity extends AppCompatActivity {
-    EditText edtUser,edtPass;
+    EditText edtUser, edtPass;
     Button btnLogin;
     TextView txtRegister;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.setTitle("Login");
-        edtUser = (EditText)findViewById(R.id.edt_username);
-        edtPass = (EditText)findViewById(R.id.edt_password);
+        edtUser = (EditText) findViewById(R.id.edt_username);
+        edtPass = (EditText) findViewById(R.id.edt_password);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         txtRegister = (TextView) findViewById(R.id.txtRegister);
 
@@ -34,11 +35,10 @@ public class MainActivity extends AppCompatActivity {
         txtRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(MainActivity.this,Register.class);
+                Intent i = new Intent(MainActivity.this, Register.class);
                 startActivity(i);
             }
         });
     }
-
-    }
 }
+
