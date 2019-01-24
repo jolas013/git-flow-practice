@@ -2,8 +2,10 @@ package com.intern_app.practicesqlite.activity;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +24,7 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         this.setTitle("Register");
+
         edtFName = (EditText) findViewById(R.id.editText_firstName);
         edtLName = (EditText) findViewById(R.id.editText_lastName);
         edtUser = (EditText) findViewById(R.id.editText_userName);
@@ -35,13 +38,18 @@ public class Register extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Boolean insertData = dbHelper.insertIntoDatabase(edtFName.getText().toString(), edtLName.getText().toString()
-                        , edtUser.getText().toString(), edtPass.getText().toString());
+                String f_name = edtFName.getText().toString();
+                String l_name = edtLName.getText().toString();
+                String username = edtUser.getText().toString();
+                String password = edtPass.getText().toString();
 
-                if (insertData == true) {
+                boolean insertData = dbHelper.insertIntoDatabase(f_name,l_name,username,password);
+
+                if (insertData) {
                     Toast.makeText(Register.this, "Register Successful", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(Register.this,MainActivity.class);
                     startActivity(i);
+
                 } else {
                     Toast.makeText(Register.this, "Register Unsuccessful", Toast.LENGTH_SHORT).show();
                 }
